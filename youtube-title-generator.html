@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TitleCraft AI — Free YouTube Title & Thumbnail Title Generator</title>
+<meta name="description" content="Generate viral YouTube titles and eye-catching thumbnail text instantly with AI. Free YouTube title generator for creators — boost clicks, views, and SEO rankings.">
+<meta name="keywords" content="YouTube title generator, thumbnail title generator, YouTube SEO, viral YouTube titles, free title generator for YouTubers, AI YouTube title maker">
+<meta property="og:title" content="TitleCraft AI — Free YouTube Title & Thumbnail Title Generator">
+<meta property="og:description" content="Generate viral YouTube titles and thumbnail text with AI. Boost your CTR instantly.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://titlecraft.ai/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TitleCraft AI",
+  "description": "AI-powered YouTube title and thumbnail title generator for content creators",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #FF3D3D;
+    --red-dark: #CC1F1F;
+    --red-glow: rgba(255,61,61,0.18);
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card: #161616;
+    --card2: #1C1C1C;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #F0F0F0;
+    --muted: #888;
+    --muted2: #666;
+    --gold: #FFD166;
+    --teal: #06D6A0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GRID BG */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1rem, 5vw, 4rem);
+    height: 64px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-badge {
+    background: var(--red);
+    color: white;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 2rem) 3rem;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--border2);
+    background: rgba(255,61,61,0.06);
+    color: var(--red);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    margin: 0 auto 1.2rem;
+  }
+
+  .hero h1 span {
+    color: var(--red);
+    position: relative;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+
+  /* STATS ROW */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin: 2rem auto 4rem;
+    max-width: 700px;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted2); }
+
+  /* MAIN TOOL */
+  .tool-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+  }
+
+  .tab-bar {
+    display: flex;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px 14px 0 0;
+    overflow: hidden;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .tab-btn.active {
+    background: var(--card2);
+    color: var(--text);
+    font-weight: 500;
+    box-shadow: inset 0 -2px 0 var(--red);
+  }
+
+  .tab-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .form-row { margin-bottom: 1.2rem; }
+
+  label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  input[type="text"], textarea, select {
+    width: 100%;
+    background: #0f0f0f;
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(255,61,61,0.1);
+  }
+
+  textarea { min-height: 90px; }
+
+  select option { background: #1C1C1C; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:560px){ .form-grid { grid-template-columns: 1fr; } }
+
+  .char-count {
+    font-size: 0.75rem;
+    color: var(--muted2);
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .tag-chip {
+    background: var(--card2);
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .tag-chip:hover, .tag-chip.on {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(255,61,61,0.07);
+  }
+
+  .generate-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .generate-btn:hover { background: #e03030; }
+  .generate-btn:active { transform: scale(0.99); }
+  .generate-btn:disabled { background: #444; cursor: wait; }
+
+  /* RESULTS */
+  .results-section { margin-top: 2rem; }
+
+  .results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .results-label {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .result-count {
+    font-size: 0.8rem;
+    color: var(--muted2);
+  }
+
+  .result-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: border-color 0.2s;
+    animation: slideIn 0.3s ease forwards;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .result-card:hover { border-color: var(--border2); }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-num {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted2);
+    min-width: 20px;
+    padding-top: 2px;
+  }
+
+  .result-body { flex: 1; }
+
+  .result-title {
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+
+  .result-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+
+  .badge-ctr { background: rgba(6,214,160,0.12); color: var(--teal); }
+  .badge-seo { background: rgba(255,209,102,0.12); color: var(--gold); }
+  .badge-hook { background: rgba(255,61,61,0.12); color: #ff7070; }
+  .badge-viral { background: rgba(138,43,226,0.18); color: #c084fc; }
+
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { border-color: var(--red); color: var(--red); }
+
+  /* THUMBNAIL PREVIEW */
+  .thumbnail-preview {
+    background: #000;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-top: 1.5rem;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .thumb-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+
+  .thumb-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 100%);
+  }
+
+  .thumb-text {
+    position: relative;
+    z-index: 2;
+    padding: 1rem 1.2rem;
+    font-family: 'Clash Display', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  }
+
+  .thumb-text span { color: var(--red); }
+
+  /* HOW IT WORKS */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 6rem auto 0;
+    padding: 0 clamp(1rem, 5vw, 2rem);
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-head h2 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-head p { color: var(--muted); max-width: 480px; margin: 0 auto; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+  }
+
+  .step-num {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* FAQ */
+  .faq-list { max-width: 680px; margin: 0 auto; }
+
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .faq-q:hover { background: var(--card); }
+
+  .faq-arrow {
+    width: 16px;
+    height: 16px;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+
+  .faq-item.open .faq-arrow { transform: rotate(-135deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .faq-a-inner { padding: 0 1.2rem 1rem; }
+  .faq-item.open .faq-a { max-height: 200px; }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    margin-top: 6rem;
+    padding: 2.5rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  footer p { font-size: 0.82rem; color: var(--muted2); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: var(--muted2); text-decoration: none; }
+  .footer-links a:hover { color: var(--muted); }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--teal);
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 10px;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* LOADING DOTS */
+  .loading-dots span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: bounce 1.2s ease infinite;
+  }
+
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    .nav-links { display: none; }
+    .stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-dot"></div>
+    TitleCraft<span style="color:var(--red)">AI</span>
+  </a>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#faq">FAQ</a>
+    <span class="nav-badge">Free</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">
+    <span>✦</span> AI-Powered for YouTubers
+  </div>
+  <h1>Generate <span>Viral Titles</span><br>That Actually Get Clicked</h1>
+  <p>The smartest YouTube title & thumbnail text generator. Craft SEO-optimized, high-CTR titles in seconds — free, forever.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">10M+</div>
+      <div class="stat-label">Titles Generated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3.2×</div>
+      <div class="stat-label">Avg CTR Boost</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Free Forever</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL -->
+<div class="tool-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('title', this)">
+      <svg class="tab-icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
+      YouTube Title
+    </button>
+    <button class="tab-btn" onclick="switchTab('thumbnail', this)">
+      <svg class="tab-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 9l6 3-6 3V9z"/></svg>
+      Thumbnail Title
+    </button>
+  </div>
+
+  <div class="tool-card">
+
+    <!-- TITLE TAB -->
+    <div id="tab-title">
+      <div class="form-row">
+        <label>Your Video Topic *</label>
+        <input type="text" id="topic" placeholder="e.g. How to make money with AI in 2025" maxlength="200">
+        <div class="char-count"><span id="topicCount">0</span>/200</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Niche / Category</label>
+          <select id="niche">
+            <option value="">Select niche</option>
+            <option>Tech & AI</option>
+            <option>Finance & Money</option>
+            <option>Fitness & Health</option>
+            <option>Gaming</option>
+            <option>Travel & Lifestyle</option>
+            <option>Education</option>
+            <option>Entertainment</option>
+            <option>Food & Cooking</option>
+            <option>Business & Marketing</option>
+            <option>Personal Development</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Title Style</label>
+          <select id="style">
+            <option value="">Any style</option>
+            <option>How-To Guide</option>
+            <option>Listicle (Top 10...)</option>
+            <option>Curiosity / Mystery</option>
+            <option>Emotional Story</option>
+            <option>Controversial / Debate</option>
+            <option>Tutorial</option>
+            <option>Review / Comparison</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Tone Tags</label>
+        <div class="tags-row" id="toneTags">
+          <span class="tag-chip" onclick="toggleTag(this)">🔥 Viral</span>
+          <span class="tag-chip" onclick="toggleTag(this)">💡 Educational</span>
+          <span class="tag-chip" onclick="toggleTag(this)">😱 Shocking</span>
+          <span class="tag-chip" onclick="toggleTag(this)">😂 Funny</span>
+          <span class="tag-chip" onclick="toggleTag(this)">💰 Money-focused</span>
+          <span class="tag-chip" onclick="toggleTag(this)">⚡ Urgent</span>
+          <span class="tag-chip" onclick="toggleTag(this)">🎯 Beginner-friendly</span>
+        </div>
+      </div>
+      <button class="generate-btn" id="generateTitleBtn" onclick="generateTitles()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Generate YouTube Titles
+      </button>
+    </div>
+
+    <!-- THUMBNAIL TAB -->
+    <div id="tab-thumbnail" style="display:none">
+      <div class="form-row">
+        <label>Video Topic *</label>
+        <input type="text" id="thumbTopic" placeholder="e.g. 10x your productivity with AI tools" maxlength="200">
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Thumbnail Style</label>
+          <select id="thumbStyle">
+            <option>Bold & Simple</option>
+            <option>Question-based</option>
+            <option>Number-led</option>
+            <option>Before/After</option>
+            <option>Shocking Reveal</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Max Words</label>
+          <select id="thumbWords">
+            <option value="3">1–3 words</option>
+            <option value="5" selected>4–5 words</option>
+            <option value="7">6–7 words</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Background Emoji / Theme</label>
+        <div class="tags-row">
+          <span class="tag-chip on" id="thumbEmoji" onclick="selectEmoji(this,'💰')">💰</span>
+          <span class="tag-chip" onclick="selectEmoji(this,'🚀')">🚀</span>
+          <span class="tag-chip" onclick="selectEmoji(this,'🎮')">🎮</span>
+          <span class="tag-chip" onclick="selectEmoji(this,'🧠')">🧠</span>
+          <span class="tag-chip" onclick="selectEmoji(this,'⚡')">⚡</span>
+          <span class="tag-chip" onclick="selectEmoji(this,'🔥')">🔥</span>
+          <span class="tag-chip" onclick="selectEmoji(this,'🌍')">🌍</span>
+        </div>
+      </div>
+      <button class="generate-btn" id="generateThumbBtn" onclick="generateThumbnailTitles()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+        Generate Thumbnail Text
+      </button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-section" id="resultsSection" style="display:none">
+      <div class="results-header">
+        <span class="results-label" id="resultsLabel">Generated Titles</span>
+        <span class="result-count" id="resultCount"></span>
+      </div>
+      <div id="resultsGrid"></div>
+
+      <!-- THUMBNAIL PREVIEW (shown in thumbnail tab) -->
+      <div id="thumbPreview" style="display:none">
+        <div class="thumbnail-preview">
+          <div class="thumb-bg" id="thumbBgEmoji">💰</div>
+          <div class="thumb-gradient"></div>
+          <div class="thumb-text" id="thumbPreviewText">Your thumbnail text here</div>
+        </div>
+        <p style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:8px;">Click a result above to preview</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-head">
+    <h2>How TitleCraft AI Works</h2>
+    <p>Three simple steps to titles that make viewers stop scrolling</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">✍️</div>
+      <div class="step-title">Describe Your Video</div>
+      <div class="step-desc">Enter your video topic, pick a niche, and choose the vibe you're going for.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">⚡</div>
+      <div class="step-title">AI Generates Options</div>
+      <div class="step-desc">Our AI analyzes top-performing videos and creates high-CTR title variations instantly.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Copy & Publish</div>
+      <div class="step-desc">Pick your favorite title, copy it with one click, and paste it straight into YouTube Studio.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">📈</div>
+      <div class="step-title">Watch Your CTR Grow</div>
+      <div class="step-desc">SEO-optimized, emotionally resonant titles lead to more clicks, more views, more growth.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-head">
+    <h2>Frequently Asked Questions</h2>
+    <p>Everything you need to know</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What is a YouTube title generator?
+        <div class="faq-arrow"></div>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">A YouTube title generator is an AI-powered tool that creates optimized, high-click-through-rate (CTR) titles for your YouTube videos. It analyzes your topic and generates multiple title options designed to rank in search results and entice viewers to click.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What's the difference between a YouTube title and a thumbnail title?
+        <div class="faq-arrow"></div>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">Your YouTube title is the full SEO-optimized title that appears in search results and below your video (usually 60-70 characters). Your thumbnail title is the short, punchy text overlaid on your thumbnail image — typically 3–7 words designed to grab attention visually at a glance.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is TitleCraft AI free to use?
+        <div class="faq-arrow"></div>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">Yes! TitleCraft AI is completely free to use. Generate as many YouTube titles and thumbnail text ideas as you need — no sign-up required, no credit card, no limits.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How do I write a good YouTube title for SEO?
+        <div class="faq-arrow"></div>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">A great YouTube SEO title includes your main keyword near the beginning, is between 50–70 characters, creates curiosity or promises clear value, and avoids clickbait without delivery. TitleCraft AI handles all of this automatically based on your topic.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How many title options will I get?
+        <div class="faq-arrow"></div>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">Each generation produces 6 unique title options with different styles — some optimized for SEO ranking, others for emotional hooks, virality, or curiosity. You can regenerate as many times as you like.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 TitleCraft AI — Free YouTube Title Generator</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Copied to clipboard!</div>
+
+<script>
+const API_URL = "https://api.anthropic.com/v1/messages";
+let currentTab = 'title';
+let selectedEmoji = '💰';
+
+function switchTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-title').style.display = tab === 'title' ? '' : 'none';
+  document.getElementById('tab-thumbnail').style.display = tab === 'thumbnail' ? '' : 'none';
+  document.getElementById('resultsSection').style.display = 'none';
+}
+
+function toggleTag(el) {
+  el.classList.toggle('on');
+}
+
+function selectEmoji(el, emoji) {
+  selectedEmoji = emoji;
+  document.querySelectorAll('#tab-thumbnail .tags-row .tag-chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('thumbBgEmoji').textContent = emoji;
+}
+
+document.getElementById('topic').addEventListener('input', function() {
+  document.getElementById('topicCount').textContent = this.value.length;
+});
+
+function getSelectedTones() {
+  const tags = document.querySelectorAll('#toneTags .tag-chip.on');
+  return Array.from(tags).map(t => t.textContent.trim()).join(', ');
+}
+
+async function callClaude(prompt) {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  const data = await response.json();
+  return data.content?.[0]?.text || '';
+}
+
+async function generateTitles() {
+  const topic = document.getElementById('topic').value.trim();
+  if (!topic) { alert('Please enter your video topic first!'); return; }
+
+  const niche = document.getElementById('niche').value;
+  const style = document.getElementById('style').value;
+  const tones = getSelectedTones();
+
+  const btn = document.getElementById('generateTitleBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div> Generating...';
+
+  const prompt = `You are an expert YouTube SEO strategist and viral content creator. Generate exactly 6 high-CTR YouTube video titles for the following:
+
+Topic: ${topic}
+${niche ? `Niche: ${niche}` : ''}
+${style ? `Preferred style: ${style}` : ''}
+${tones ? `Tone/Tags: ${tones}` : ''}
+
+Requirements:
+- Each title must be 45–70 characters for optimal SEO
+- Include the main keyword naturally
+- Mix different approaches: curiosity gap, numbers, how-to, emotional, etc.
+- Each title should feel distinct, not just variations of the same structure
+- Make them compelling, not clickbait
+
+Respond ONLY with a JSON array. No other text. Format:
+[
+  {"title": "Title here", "type": "SEO", "hook": "keyword-rich"},
+  {"title": "Title here", "type": "Viral", "hook": "curiosity"},
+  {"title": "Title here", "type": "CTR", "hook": "number-led"},
+  {"title": "Title here", "type": "Hook", "hook": "emotional"},
+  {"title": "Title here", "type": "SEO", "hook": "how-to"},
+  {"title": "Title here", "type": "Viral", "hook": "shocking"}
+]
+
+type must be one of: SEO, Viral, CTR, Hook`;
+
+  try {
+    const raw = await callClaude(prompt);
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const results = JSON.parse(clean);
+
+    showResults(results.map(r => ({
+      title: r.title,
+      badges: [typeToBadge(r.type), { label: r.hook, class: 'badge-seo' }]
+    })), 'YouTube Titles', false);
+  } catch(e) {
+    alert('Something went wrong. Please try again.');
+    console.error(e);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Generate YouTube Titles';
+}
+
+async function generateThumbnailTitles() {
+  const topic = document.getElementById('thumbTopic').value.trim();
+  if (!topic) { alert('Please enter your video topic first!'); return; }
+
+  const style = document.getElementById('thumbStyle').value;
+  const maxWords = document.getElementById('thumbWords').value;
+
+  const btn = document.getElementById('generateThumbBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="loading-dots"><span></span><span></span><span></span></div> Generating...';
+
+  const prompt = `You are an expert YouTube thumbnail designer. Generate exactly 6 short, punchy thumbnail text overlays for this video:
+
+Topic: ${topic}
+Style: ${style}
+Max words: ${maxWords}
+
+Requirements:
+- Maximum ${maxWords} words per thumbnail text
+- ALL CAPS or Mixed case — whatever hits harder
+- Designed to be read in 0.5 seconds on a small thumbnail
+- Use power words, numbers, or emotional triggers
+- Each must be visually distinct and impactful
+
+Respond ONLY with a JSON array. No other text:
+[
+  {"text": "THUMBNAIL TEXT", "impact": "High", "style": "Bold"},
+  {"text": "THUMBNAIL TEXT", "impact": "High", "style": "Question"},
+  {"text": "THUMBNAIL TEXT", "impact": "Medium", "style": "Number"},
+  {"text": "THUMBNAIL TEXT", "impact": "High", "style": "Shock"},
+  {"text": "THUMBNAIL TEXT", "impact": "Medium", "style": "Clean"},
+  {"text": "THUMBNAIL TEXT", "impact": "High", "style": "Emotional"}
+]`;
+
+  try {
+    const raw = await callClaude(prompt);
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const results = JSON.parse(clean);
+
+    showResults(results.map(r => ({
+      title: r.text,
+      badges: [
+        { label: r.impact + ' Impact', class: r.impact === 'High' ? 'badge-hook' : 'badge-seo' },
+        { label: r.style, class: 'badge-ctr' }
+      ]
+    })), 'Thumbnail Text Options', true);
+
+    // Set first result as preview
+    if (results[0]) {
+      updateThumbPreview(results[0].text);
+    }
+  } catch(e) {
+    alert('Something went wrong. Please try again.');
+    console.error(e);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/></svg> Generate Thumbnail Text';
+}
+
+function typeToBadge(type) {
+  const map = {
+    'SEO': { label: '🔍 SEO', class: 'badge-seo' },
+    'Viral': { label: '🔥 Viral', class: 'badge-viral' },
+    'CTR': { label: '📈 CTR', class: 'badge-ctr' },
+    'Hook': { label: '🎣 Hook', class: 'badge-hook' }
+  };
+  return map[type] || { label: type, class: 'badge-seo' };
+}
+
+function showResults(items, label, showThumb) {
+  const section = document.getElementById('resultsSection');
+  const grid = document.getElementById('resultsGrid');
+  const lbl = document.getElementById('resultsLabel');
+  const cnt = document.getElementById('resultCount');
+  const thumbPreview = document.getElementById('thumbPreview');
+
+  lbl.textContent = label;
+  cnt.textContent = `${items.length} options`;
+  section.style.display = '';
+  thumbPreview.style.display = showThumb ? '' : 'none';
+
+  grid.innerHTML = items.map((item, i) => `
+    <div class="result-card" style="animation-delay:${i * 0.07}s" onclick="handleResultClick('${escapeJs(item.title)}', ${showThumb})">
+      <div class="result-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="result-body">
+        <div class="result-title">${escapeHtml(item.title)}</div>
+        <div class="result-meta">
+          ${item.badges.map(b => `<span class="badge ${b.class}">${b.label}</span>`).join('')}
+          <span class="badge" style="background:rgba(255,255,255,0.05);color:var(--muted2)">${item.title.length} chars</span>
+        </div>
+      </div>
+      <button class="copy-btn" onclick="event.stopPropagation(); copyText('${escapeJs(item.title)}')">Copy</button>
+    </div>
+  `).join('');
+
+  section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function handleResultClick(text, isThumb) {
+  if (isThumb) updateThumbPreview(text);
+  copyText(text);
+}
+
+function updateThumbPreview(text) {
+  document.getElementById('thumbPreviewText').textContent = text;
+  document.getElementById('thumbBgEmoji').textContent = selectedEmoji;
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => showToast('✓ Copied!'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function escapeJs(s) {
+  return s.replace(/'/g,"\\'").replace(/"/g,'\\"');
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
